@@ -39,9 +39,55 @@
   line-height: 1.5;
 }
 
+/* NEW: Styles for the sample format section */
+.sampleContainer {
+  margin-bottom: 1rem;
+}
+
+.sampleHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.sampleHeader h4 {
+  margin: 0;
+  font-weight: 500;
+  color: #555;
+}
+
+.copyButton {
+  background: #ecf0f1;
+  border: 1px solid #d4dbe0;
+  color: #34495e;
+  padding: 0.25rem 0.75rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.copyButton:hover {
+  background: #d4dbe0;
+}
+
+.sampleCode {
+  background-color: #f4f7f9;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1rem;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.85rem;
+  white-space: pre-wrap; /* Allows text to wrap */
+  word-wrap: break-word;
+  color: #2c3e50;
+}
+
 .textArea {
-  flex-grow: 1; /* Allow the textarea to grow and fill the space */
-  min-height: 300px;
+  flex-grow: 1; 
+  min-height: 200px; /* Adjusted height */
   width: 100%;
   padding: 1rem;
   box-sizing: border-box;
@@ -50,7 +96,7 @@
   border-radius: 8px;
   font-family: 'Poppins', sans-serif;
   font-size: 1rem;
-  resize: vertical; /* Allow vertical resizing */
+  resize: vertical;
 }
 
 .errorText {
@@ -65,7 +111,6 @@
   margin-top: 1rem;
 }
 
-/* Reusing button styles from the main dashboard for consistency */
 .button {
     border: none;
     padding: 0.75rem 1.25rem;

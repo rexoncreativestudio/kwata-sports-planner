@@ -1,9 +1,7 @@
 // src/components/BulkScheduler.tsx
 import { useState, useEffect } from 'react';
 import { supabase } from '../supabaseClient';
-import styles from './BulkScheduler.module.css';
-
-// The unused 'Platform' type has been removed.
+import styles from './BulkScheduler.module.css'; // Import the corresponding CSS module
 
 type BulkSchedulerProps = {
   onClose: () => void;
@@ -15,8 +13,9 @@ export default function BulkScheduler({ onClose, onScheduleComplete }: BulkSched
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [platformsMap, setPlatformsMap] = useState<Map<string, number>>(new Map());
+  const [isCopied, setIsCopied] = useState(false);
 
-  // Fetch all platforms on component load to map names to IDs
+  // Fetch all platforms on component load to map their names to database IDs
   useEffect(() => {
     const fetchPlatforms = async () => {
       const { data, error } = await supabase.from('platforms').select('id, name');
@@ -30,19 +29,44 @@ export default function BulkScheduler({ onClose, onScheduleComplete }: BulkSched
     fetchPlatforms();
   }, []);
 
+  // Define the sample format as a constant for easy reference
+  const sampleFormat = `First Awesome Video
+Platforms: YouTube, Instagram
+Notes: Remember to add the end screen.
+Date: 2025-07-15
+
+Second Post
+Platforms: Facebook
+Date: 2025-07-16`;
+
+  // Function to copy the sample format to the user's clipboard
+  const handleCopySample = () => {
+    const textArea = document.createElement('textarea');
+    textArea.value = sampleFormat;
+    document.body.appendChild(textArea);
+    textArea.select();
+    try {
+      document.execCommand('copy');
+      setIsCopied(true);
+      setTimeout(() => setIsCopied(false), 2000); // Reset button text after 2 seconds
+    } catch (err) {
+      alert('Failed to copy text. Please copy it manually.');
+    }
+    document.body.removeChild(textArea);
+  };
+
   const handleSchedule = async () => {
     setIsLoading(true);
     setError(null);
 
-    // 1. Split the text into blocks for each task
+    // 1. Split the text into blocks for each task (separated by blank lines)
     const taskBlocks = text.trim().split(/\n\s*\n/);
     const tasksToCreate = [];
 
-    // 2. Parse each block
+    // 2. Parse each block to extract task details
     for (const block of taskBlocks) {
       const lines = block.trim().split('\n');
-      // A valid block now needs at least 3 lines: Title, Platforms, Date
-      if (lines.length < 3) continue;
+      if (lines.length < 3) continue; // Skip invalid blocks
 
       const title = lines[0].trim();
       let platformNames: string[] = [];
@@ -60,7 +84,7 @@ export default function BulkScheduler({ onClose, onScheduleComplete }: BulkSched
         }
       });
 
-      // 3. Validate and convert platform names to IDs
+      // 3. Validate the parsed data
       if (!title || platformNames.length === 0 || !scheduled_date) {
         setError(`Skipping an invalid task block. Ensure Title, Platforms, and Date are provided. Block: "${title}"`);
         continue;
@@ -84,7 +108,7 @@ export default function BulkScheduler({ onClose, onScheduleComplete }: BulkSched
       return;
     }
 
-    // 4. Call the RPC function for each parsed task
+    // 4. Call the RPC function for each valid task
     for (const task of tasksToCreate) {
       const { error: rpcError } = await supabase.rpc('create_task_with_platforms', {
         title: task.title,
@@ -97,7 +121,7 @@ export default function BulkScheduler({ onClose, onScheduleComplete }: BulkSched
       if (rpcError) {
         setError(`An error occurred while scheduling "${task.title}": ${rpcError.message}`);
         setIsLoading(false);
-        return; // Stop on first error
+        return;
       }
     }
 
@@ -114,19 +138,23 @@ export default function BulkScheduler({ onClose, onScheduleComplete }: BulkSched
             <p className={styles.infoText}>
               Enter each task in a block, separated by a blank line. Each task must have a Title, Platforms, and Date.
             </p>
+
+            <div className={styles.sampleContainer}>
+                <div className={styles.sampleHeader}>
+                    <h4>Example Format</h4>
+                    <button onClick={handleCopySample} className={styles.copyButton}>
+                        {isCopied ? 'Copied!' : 'Copy Sample'}
+                    </button>
+                </div>
+                <pre className={styles.sampleCode}>
+                    {sampleFormat}
+                </pre>
+            </div>
+
             <textarea
                 value={text}
                 onChange={(e) => setText(e.target.value)}
-                placeholder={
-`First Awesome Video
-Platforms: YouTube, Instagram
-Notes: Remember to add the end screen.
-Date: 2025-07-15
-
-Second Post
-Platforms: Facebook
-Date: 2025-07-16`
-                }
+                placeholder="Paste your content ideas here..."
                 className={styles.textArea}
                 disabled={isLoading}
             />
