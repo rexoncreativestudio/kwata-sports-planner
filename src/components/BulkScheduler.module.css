@@ -1,0 +1,97 @@
+/* src/components/BulkScheduler.module.css */
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+.modalContainer {
+  background-color: white;
+  padding: 1.5rem 2rem;
+  border-radius: 12px;
+  width: 600px;
+  max-width: 90%;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+}
+
+.header {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+.infoText {
+  color: #555;
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
+
+.textArea {
+  flex-grow: 1; /* Allow the textarea to grow and fill the space */
+  min-height: 300px;
+  width: 100%;
+  padding: 1rem;
+  box-sizing: border-box;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  resize: vertical; /* Allow vertical resizing */
+}
+
+.errorText {
+  color: #e74c3c;
+  margin-bottom: 1rem;
+}
+
+.footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+/* Reusing button styles from the main dashboard for consistency */
+.button {
+    border: none;
+    padding: 0.75rem 1.25rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.primaryButton {
+    background-color: #3498db;
+    color: white;
+}
+.primaryButton:hover {
+    background-color: #2980b9;
+}
+.primaryButton:disabled {
+    background-color: #a9d6f5;
+    cursor: not-allowed;
+}
+
+.secondaryButton {
+    background-color: #ecf0f1;
+    color: #34495e;
+}
+.secondaryButton:hover {
+    background-color: #d4dbe0;
+}

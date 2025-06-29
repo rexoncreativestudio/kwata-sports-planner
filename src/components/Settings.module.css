@@ -1,0 +1,91 @@
+/* src/components/Settings.module.css */
+
+.settingsContainer {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.formCard {
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.cardTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-top: 0;
+  margin-bottom: 0.25rem;
+}
+
+.cardSubtitle {
+  color: #777;
+  margin-top: 0;
+  margin-bottom: 2rem;
+}
+
+.formGroup {
+  margin-bottom: 1.5rem;
+}
+
+.formGroup label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: #555;
+}
+
+.formGroup input {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  font-size: 1rem;
+  font-family: 'Poppins', sans-serif;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  box-sizing: border-box; /* Ensures padding doesn't affect width */
+}
+
+.formGroup input:disabled {
+  background-color: #f4f7f9;
+  cursor: not-allowed;
+  color: #888;
+}
+
+.formFooter {
+  margin-top: 2rem;
+  text-align: right;
+}
+
+.submitButton {
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  background-color: #3498db;
+  color: white;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.submitButton:hover {
+  background-color: #2980b9;
+}
+
+.submitButton:disabled {
+  background-color: #a9d6f5;
+  cursor: not-allowed;
+}
+
+/* In src/components/Settings.module.css */
+
+.formCard {
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  margin-bottom: 2rem; /* Add this line */
+}

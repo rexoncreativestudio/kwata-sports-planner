@@ -1,0 +1,122 @@
+/* src/components/Dashboard.module.css */
+
+/* Main layout styles (unchanged) */
+.dashboardContainer {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+}
+.dashboardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e0e0e0;
+}
+.dashboardTitle {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #2c3e50;
+}
+.subHeader {
+  padding-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid #f0f0f0;
+}
+.welcomeMessage {
+    font-size: 2rem;
+    font-weight: 500;
+    color: #34495e;
+    margin: 0;
+    text-align: center;
+}
+.actionsContainer {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+.rightActions {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+/* Button styles (unchanged) */
+.button { border: none; padding: 0.75rem 1.25rem; border-radius: 8px; font-size: 0.9rem; font-weight: 500; cursor: pointer; transition: all 0.2s ease-in-out; }
+.primaryButton { background-color: #3498db; color: white; }
+.primaryButton:hover { background-color: #2980b9; }
+.secondaryButton { background-color: #ecf0f1; color: #34495e; }
+.secondaryButton:hover { background-color: #d4dbe0; }
+
+/* THE FIX: We add padding to the bottom to create a larger hover area */
+.profileMenuContainer {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 0.5rem; /* Creates a safe zone for the mouse */
+  margin-bottom: -0.5rem; /* Prevents the padding from adding extra space */
+}
+
+.profileButton {
+  background-color: #ecf0f1;
+  color: #2c3e50;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.profileButton:hover {
+  background-color: #d4dbe0;
+}
+
+.profileDropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: white;
+  min-width: 160px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  border-radius: 8px;
+  z-index: 100;
+  padding: 0.5rem 0;
+  /* THE FIX: The margin-top that created the gap is removed */
+}
+
+.profileMenuContainer:hover .profileDropdown {
+  display: block;
+}
+
+.dropdownItem {
+  color: #34495e;
+  padding: 0.75rem 1.25rem;
+  text-decoration: none;
+  display: block;
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-family: 'Poppins', sans-serif;
+}
+
+.dropdownItem:hover {
+  background-color: #f4f7f9;
+}
+
+/* Calendar Styles (unchanged) */
+.calendarContainer { height: 80vh; padding: 1.5rem; background-color: #ffffff; border-radius: 12px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); }
+:global(.rbc-month-cell) { border: 1px solid #e9eaec !important; position: relative; }
+.todayCell { background-color: #eaf6ff !important; }
+.hasTasksCell { background-color: #f6f6f6; }
+.todayCell.hasTasksCell { background-color: #eaf6ff !important; }
+:global(.rbc-day-bg) { position: relative; }
+:global(.rbc-day-bg[data-count])::after { content: attr(data-count); background-color: #3498db; color: white; border-radius: 50%; width: 28px; height: 28px; font-size: 0.9rem; display: flex; align-items: center; justify-content: center; font-weight: 700; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 2; }

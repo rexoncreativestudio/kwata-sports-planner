@@ -1,0 +1,38 @@
+/* src/components/ReminderSystem.module.css */
+.reminderContainer {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  background-color: #fffbe6; /* A light yellow warning color */
+  border: 1px solid #ffe58f;
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.icon {
+  font-size: 1.5rem;
+  margin-top: 0.25rem;
+}
+
+.content {
+  flex-grow: 1;
+}
+
+.title {
+  margin: 0 0 0.25rem 0;
+  color: #d46b08; /* A dark orange for the title */
+  font-weight: 600;
+}
+
+.message {
+  margin: 0 0 0.5rem 0;
+  color: #595959;
+}
+
+.gapList {
+  margin: 0;
+  padding-left: 1.5rem;
+  color: #333;
+  font-weight: 500;
+}

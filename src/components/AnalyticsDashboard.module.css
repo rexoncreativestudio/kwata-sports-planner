@@ -1,0 +1,22 @@
+/* src/components/AnalyticsDashboard.module.css */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 2rem;
+    padding: 1rem;
+}
+
+.chartContainer {
+    background-color: #ffffff;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.chartTitle {
+    margin-top: 0;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-weight: 600;
+    color: #2c3e50;
+}
